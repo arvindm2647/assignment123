@@ -1,0 +1,116 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<style>
+    /* Add a pastel background to the entire page */
+    body {
+        background-color: #f0f8ff;  /* Light pastel blue background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Style for the container of the form */
+    .form-container {
+        background-color: #fef8e4; /* Soft pastel yellow background for the form */
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+        color: #4a4a4a;
+    }
+
+    /* Style for the form labels */
+    label {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* Style for the input fields */
+    input[type="text"], input[type="email"], input[type="number"], input[type="file"], select {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f1f1f1; /* Light pastel gray */
+        font-size: 1em;
+    }
+
+    /* Hover effect on input fields */
+    input[type="text"]:hover, input[type="email"]:hover, input[type="number"]:hover, input[type="file"]:hover, select:hover {
+        border-color: #a8d0e6; /* Soft blue border on hover */
+    }
+
+    /* Style for the submit button */
+    input[type="submit"] {
+        background-color: #ffcccb; /* Pastel pink for the submit button */
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1em;
+        margin-top: 20px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Hover effect on submit button */
+    input[type="submit"]:hover {
+        background-color: #ffb3b3; /* Slightly darker pink on hover */
+    }
+
+</style>
+
+<h2>Add Employee</h2>
+
+<div class="form-container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Employee Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <!-- Employee Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Mobile Number -->
+        <label for="mobile_no">Mobile Number:</label>
+        <input type="number" id="mobile_no" name="mobile_no" required>
+
+        <!-- Designation -->
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" name="designation" required>
+
+        <!-- Gender -->
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <!-- Course -->
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course" required>
+
+        <!-- Employee Image -->
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Add Employee">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<style>
+    /* Add pastel background to the page */
+    body {
+        background-color: #f3f9fc; /* Light pastel background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    .form-container {
+        background-color: #fff5e1; /* Soft pastel yellow background */
+        padding: 40px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 40px auto;
+        border-radius: 15px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+        color: #333;
+    }
+
+    label {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    input[type="text"], input[type="password"], input[type="file"] {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f1f1f1; /* Light pastel gray */
+    }
+
+    input[type="submit"] {
+        background-color: #ffcccb; /* Pastel pink */
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1em;
+        margin-top: 20px;
+        display: block;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #ffb3b3; /* Darker pink on hover */
+    }
+
+    .employee-image {
+        max-width: 150px;
+        height: auto;
+        margin-top: 15px;
+    }
+</style>
+
+<h2>Edit Employee</h2>
+
+<div class="form-container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ employee.name }}" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="{{ employee.email }}" required>
+
+        <label for="mobile_no">Mobile No:</label>
+        <input type="text" id="mobile_no" name="mobile_no" value="{{ employee.mobile_no }}" required>
+
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" name="designation" value="{{ employee.designation }}" required>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" value="{{ employee.gender }}" required>
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course" value="{{ employee.course }}" required>
+
+        <label for="image">Image:</label>
+        {% if employee.image %}
+            <img src="{{ employee.image.url }}" alt="Current Employee Image" class="employee-image">
+        {% endif %}
+        <input type="file" id="image" name="image">
+        
+        <input type="submit" value="Update Employee">
+    </form>
+</div>
+
+{% endblock %}

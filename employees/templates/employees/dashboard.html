@@ -1,0 +1,58 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<style>
+    /* General body background */
+    body {
+        background: linear-gradient(to right, #ADD8E6, #87CEFA); /* Light blue gradient background */
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        font-weight: bold;  /* Make entire text bold */
+    }
+
+    /* Dashboard Container */
+    .dashboard-container {
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    /* Dashboard button styles */
+    .btn-dashboard {
+        background-color: #eb9c4d;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 1.2em;
+        width: 100%;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+        font-weight: bold;  /* Make button text bold */
+    }
+
+    .btn-dashboard:hover {
+        background-color: #6c8fef;
+    }
+
+    /* Heading for the Dashboard */
+    h1 {
+        font-size: 2.5em;
+        color: #3E2723;
+        margin-bottom: 20px;
+        font-weight: bold; /* Make the heading bold */
+    }
+</style>
+
+<div class="dashboard-container">
+    <!-- Heading of the dashboard -->
+    <h1 class="text-center">Welcome to the Employee Dashboard</h1>
+
+    <!-- Action Buttons Section -->
+    <div class="text-center">
+        <a href="{% url 'add_employee' %}" class="btn-dashboard">Add New Employee</a>
+        <a href="{% url 'employee_list' %}" class="btn-dashboard">Employee List</a>
+        <a href="{% url 'logout' %}" class="btn-dashboard">Log Out</a>
+    </div>
+</div>
+
+{% endblock %}

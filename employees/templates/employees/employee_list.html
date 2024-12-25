@@ -1,0 +1,105 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<style>
+    /* Add pastel background color to the page */
+    body {
+        background-color: #f0f8ff;  /* Light pastel blue background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Style for the table container */
+    .table-container {
+        background-color: #fef8e4; /* Soft pastel yellow background for the table */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    /* Style for the table */
+    .employee-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+    }
+
+    .employee-table th, .employee-table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    .employee-table th {
+        background-color: #ffebcd; /* Pastel beige background for headers */
+        font-weight: bold;
+    }
+
+    .employee-table td {
+        font-weight: bold;
+        background-color: #fef8e4; /* Light yellow background for rows */
+    }
+
+    /* Hover effect for table rows */
+    .employee-table tr:hover {
+        background-color: #d3f8e2;  /* Pastel green hover effect */
+        cursor: pointer;
+    }
+
+    /* Style for square-sized image */
+    .square-img {
+        width: 80px;  /* Width of square image */
+        height: 80px; /* Height of square image */
+        object-fit: cover;  /* Ensures image fits without distortion */
+        border-radius: 10px; /* Slight rounding of the corners for a neat look */
+    }
+
+    /* Style for the table title */
+    h2 {
+        font-size: 2em;
+        color: #4a4a4a;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<h2>Employee List</h2>
+
+<div class="table-container">
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile No</th>
+                <th>Designation</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>
+                    <!-- Display square-sized image -->
+                    <img src="{{ employee.image.url }}" class="square-img" alt="Employee Image">
+                </td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.mobile_no }}</td>
+                <td>{{ employee.designation }}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.course }}</td>
+                <td>
+                    <a href="{% url 'edit_employee' employee.id %}">Edit</a> |
+                    <a href="{% url 'delete_employee' employee.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
